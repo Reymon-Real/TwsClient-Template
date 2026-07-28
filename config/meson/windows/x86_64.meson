@@ -1,0 +1,19 @@
+# *****************************
+# *** Autor: Reymon Dev     ***
+# *** Datum: 26. Juli. 2026 ***
+# *** Aktua: 26. Juli. 2026 ***
+# *** Lizenz: MIT           ***
+# *****************************
+
+[binaries]
+
+c     = 'mvsc'
+cpp   = 'msvc'
+
+[host_machine]
+
+system     = 'windows'
+kernel     = 'windows'
+cpu_family = 'x86_64'
+cpu        = 'x86_64'
+endian     = 'little'

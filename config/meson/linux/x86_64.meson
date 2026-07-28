@@ -1,0 +1,24 @@
+# *****************************
+# *** Autor: Reymon Dev     ***
+# *** Datum: 26. Juli. 2026 ***
+# *** Aktua: 26. Juli. 2026 ***
+# *** Lizenz: MIT           ***
+# *****************************
+
+[constants]
+
+ARCH = 'x86_64-linux-gnu-'
+
+[binaries]
+
+c     = ARCH + 'gcc'
+cpp   = ARCH + 'g++'
+strip = ARCH + 'strip'
+
+[host_machine]
+
+system     = 'linux'
+kernel     = 'linux'
+cpu_family = 'x86_64'
+cpu        = 'x86_64'
+endian     = 'little'

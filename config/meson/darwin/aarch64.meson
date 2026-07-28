@@ -1,0 +1,19 @@
+# *****************************
+# *** Autor: Reymon Dev     ***
+# *** Datum: 26. Juli. 2026 ***
+# *** Aktua: 26. Juli. 2026 ***
+# *** Lizenz: MIT           ***
+# *****************************
+
+[binaries]
+
+c     = 'clang'
+cpp   = 'clang'
+
+[host_machine]
+
+system     = 'darwin'
+kernel     = 'darwin'
+cpu_family = 'aarch64'
+cpu        = 'aarch64'
+endian     = 'little'
