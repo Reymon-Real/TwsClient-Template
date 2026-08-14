@@ -1,11 +1,11 @@
-# *****************************
-# *** Autor: Reymon Dev     ***
-# *** Datum: 26. Juli. 2026 ***
-# *** Aktua: 27. Juli. 2026 ***
-# *** Lizenz: MIT           ***
-# *****************************
+# *******************************
+# *** Autor: Reymon Dev       ***
+# *** Datum: 08. Juli. 2026   ***
+# *** Aktua: 08. Juli. 2026   ***
+# *** Lizenz: AGPL-3-or-later ***
+# *******************************
 
-SOURCE_FILES_TWSCLIENT_NEWS = files(
+source_files_twsclient_news = files(
 	'newsArticle.cpp',
 	'newsProviders.cpp',
 	'reqNewsArticle.cpp',
@@ -14,3 +14,9 @@ SOURCE_FILES_TWSCLIENT_NEWS = files(
 	'tickNews.cpp',
 	'updateNewsBulletin.cpp'
 )
+
+# **************************************
+# *** Constrol Addition Source Files ***
+# **************************************
+
+source_files_twsclient += source_files_twsclient_news

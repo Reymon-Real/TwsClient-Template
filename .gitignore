@@ -4,6 +4,9 @@
 
 build/
 
+lib/linux/IBKR
+lib/Linux/IBKR
+
 include/IBKR/
 
 # *************

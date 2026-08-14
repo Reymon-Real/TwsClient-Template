@@ -12,15 +12,9 @@ A basic template for using `C++` with `TwsScoketClient` without having to write 
 
 # Compilation
 
-## Binaries
+## Options
 
-This project assumes that the default path for `libTwsSocketClient.so` is `/usr/local/lib` or `/usr/lib` on Unix Systems
-
-On windows assumes that default path for `libTwsSocketClient.dll` or `TwsSocketClient.dll` is `.\lib\IBKR`
-
-## Headers
-
-This project assumes that default path for `TwsSocketClient` Headers is `include/IBKR/TwsSocketClient` or `include\IBKR\TwsSocketClient` in windows
+This project use a option files for config projetc
 
 ## Build Systems
 
@@ -40,7 +34,7 @@ For use make use scripts of `bash`, `cmd` or `powershell`
 
 ## Scripts
 
-The form is `./project.sh --<type of operation> --<system> --<architecture> --<build system> <flags for the build system to use>`
+The form is `./project.<extension> --<type of operation> --<system> --<architecture> --<build system> <flags for the build system to use>`
 
 ### Examples
 
@@ -65,7 +59,12 @@ Apply equal to `powershell` and `cmd`
 ## Considerations
 
 - Scripts for `cmd` and `powershell` in development
-- The build system `GnuMake` in development  
+- The build system `GnuMake` in development for windows, darwin and linux aarch64
+
+# Project Settings
+
+The project uses options files for configuration, but this isn’t actually compulsory.
+What I recommend is modifying the build systems to suit your needs, rather than just sticking with the base template, which is only there so you don’t have to rewrite everything from scratch.
 
 # License
 

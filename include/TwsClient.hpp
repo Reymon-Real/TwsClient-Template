@@ -37,37 +37,6 @@
 // *** Functions ***
 // *****************
 
-extern void* TwsClientConnection_00(void*);
-extern void* TwsClientConnection_01(void*);
-extern void* TwsClientConnection_02(void*);
-extern void* TwsClientConnection_03(void*);
-extern void* TwsClientConnection_04(void*);
-extern void* TwsClientConnection_05(void*);
-extern void* TwsClientConnection_06(void*);
-extern void* TwsClientConnection_07(void*);
-extern void* TwsClientConnection_08(void*);
-extern void* TwsClientConnection_09(void*);
-extern void* TwsClientConnection_0A(void*);
-extern void* TwsClientConnection_0B(void*);
-extern void* TwsClientConnection_0C(void*);
-extern void* TwsClientConnection_0D(void*);
-extern void* TwsClientConnection_0E(void*);
-extern void* TwsClientConnection_0F(void*);
-extern void* TwsClientConnection_10(void*);
-extern void* TwsClientConnection_11(void*);
-extern void* TwsClientConnection_12(void*);
-extern void* TwsClientConnection_13(void*);
-extern void* TwsClientConnection_14(void*);
-extern void* TwsClientConnection_15(void*);
-extern void* TwsClientConnection_16(void*);
-extern void* TwsClientConnection_17(void*);
-extern void* TwsClientConnection_18(void*);
-extern void* TwsClientConnection_19(void*);
-extern void* TwsClientConnection_1A(void*);
-extern void* TwsClientConnection_1B(void*);
-extern void* TwsClientConnection_1C(void*);
-extern void* TwsClientConnection_1D(void*);
-extern void* TwsClientConnection_1E(void*);
-extern void* TwsClientConnection_1F(void*);
+extern void TwsClientConnection(int, void*);
 
 #endif // TWSCLIENT_HPP

@@ -1,0 +1,113 @@
+###############################
+### Autor: Reymon Dev       ###
+### Datum: 09. Juli. 2026   ###
+### Aktua: 09. August. 2026 ###
+### Lizenz: MIT             ###
+###############################
+
+#####################
+### Meson Options ###
+#####################
+
+option(
+	'meson_output_bin',
+	type: 'string',
+	value: 'bin'
+)
+
+option(
+	'meson_output_lib',
+	type: 'string',
+	value: 'lib'
+)
+
+option(
+	'meson_install_bindir',
+	type: 'string',
+	value: 'C:\\sxmm\\bin'
+)
+
+option(
+	'meson_install_libdir',
+	type: 'string',
+	value: 'C:\\sxmm\\lib'
+)
+
+#######################
+### Project Options ###
+#######################
+
+option(
+	'project_global_include_dir',
+	type: 'array',
+	value: [
+		'include'
+	]
+)
+
+###############################
+### Project Targets Options ###
+###############################
+
+option(
+	'exec_build_rpath',
+	type: 'string',
+	value: '$ORIGIN'
+)
+
+option(
+	'exec_install_rpath',
+	type: 'string',
+	value: '$ORIGIN:/usr/lib:/usr/local/lib'
+)
+
+option(
+	'twsclient_build_rpath',
+	type: 'string',
+	value: '$ORIGIN'
+)
+
+option(
+	'twsclient_install_rpath',
+	type: 'string',
+	value: '$ORIGIN:/usr/lib:/usr/local/lib'
+)
+
+option(
+	'twsorder_build_rpath',
+	type: 'string',
+	value: '$ORIGIN'
+)
+
+option(
+	'twsorder_install_rpath',
+	type: 'string',
+	value: '$ORIGIN:/usr/lib:/usr/local/lib'
+)
+
+####################
+### IBKR Options ###
+####################
+
+option(
+	'ibkr_dir_linkage_root',
+	type: 'string',
+	value: 'lib/IBKR'
+)
+
+option(
+	'ibkr_dir_include_twssocketclient',
+	type: 'array',
+	value: [
+		'include',
+		'include/IBKR/TwsSocketClient'
+	]
+)
+
+option(
+	'ibkr_dir_include_twssocketclient_protobuf',
+	type: 'array',
+	value: [
+		'include/IBKR/TwsSocketClient/protobufUnix'
+	]
+)

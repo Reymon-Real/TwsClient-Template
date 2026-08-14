@@ -48,14 +48,19 @@ public:
 	// ***********************
 
 	TwsClient();
-
 	~TwsClient();
+
+	// ********************************
+	// *** Most Important Functions ***
+	// ********************************
+
+	void start(int, void*);
 
 	// ****************************
 	// *** Connection Functions ***
 	// ****************************
 
-	bool connect(const char*, int, int);
+	bool connect(const char*, int, int, bool);
 	void disconnect() const;
 	bool isConnected() const;
 
@@ -70,12 +75,6 @@ public:
 	// ****************************
 
 	#include <IBKR/TwsSocketClient/EWrapper_prototypes.h>
-
-	// ***********************
-	// *** Order Functions ***
-	// ***********************
-
-	void submitLimitStockBuyOrder(void);
 
 	// *************************
 	// *** Private Functions ***

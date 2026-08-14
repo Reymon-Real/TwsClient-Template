@@ -1,22 +1,21 @@
-# *****************************
-# *** Autor: Reymon Dev     ***
-# *** Datum: 26. Juli. 2026 ***
-# *** Aktua: 27. Juli. 2026 ***
-# *** Lizenz: MIT           ***
-# *****************************
+# *******************************
+# *** Autor: Reymon Dev       ***
+# *** Datum: 08. Juli. 2026   ***
+# *** Aktua: 08. Juli. 2026   ***
+# *** Lizenz: AGPL-3-or-later ***
+# *******************************
 
-SOURCE_FILES_TWSCLIENT_ORDERS = files(
-	'bracketSample.cpp',
+source_files_twsclient_orders = files(
 	'completedOrder.cpp',
 	'completedOrdersEnd.cpp',
-	'conditionSamples.cpp',
-	'hedgeSample.cpp',
-	'ibkratsSample.cpp',
-	'ocaSamples.cpp',
 	'openOrder.cpp',
 	'openOrderEnd.cpp',
 	'orderOperations.cpp',
-	'orderStatus.cpp',
-	'submitStockBuyLimit.cpp',
-	'whatIfSamples.cpp'
+	'orderStatus.cpp'
 )
+
+# **************************************
+# *** Constrol Addition Source Files ***
+# **************************************
+
+source_files_twsclient += source_files_twsclient_orders

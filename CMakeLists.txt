@@ -1,161 +1,248 @@
-# *****************************
-# *** Autor: Reymon Dev     ***
-# *** Datum: 26. Juli. 2026 ***
-# *** Aktua: 26. Juli. 2026 ***
-# *** Lizenz: MIT           ***
-# *****************************
+###############################
+### Autor: Reymon Dev       ###
+### Datum: 26. Juli. 2026   ###
+### Aktua: 09. August. 2026 ###
+### Lizenz: MIT             ###
+###############################
 
 cmake_minimum_required(VERSION 4.0.0 FATAL_ERROR)
 project(
 	TwsClient
-	VERSION 1.0.0
+	VERSION 1.1.2
 	LANGUAGES CXX C
 )
 
-# *****************************
-# *** Environment Variables ***
-# *****************************
+#############################
+### Environment Variables ###
+#############################
 
-set(PROJECT_SYSTEM ${CMAKE_SYSTEM_NAME})
+string(TOLOWER "${CMAKE_SYSTEM_NAME}" PROJECT_SYSTEM)
 
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+###############
+### Options ###
+###############
 
-# *******************
-# *** Directories ***
-# *******************
+include(options.cmake)
 
-set(TWSCLIENT_DIR ${CMAKE_SOURCE_DIR}/TwsClient)
+##########################
+### Local Dependencies ###
+##########################
 
-if (PROJECT_SYSTEM STREQUAL "Linux" OR PROJECT_SYSTEM STREQUAL "Darwin")
+add_library(libbid SHARED IMPORTED)
+add_library(TwsSocketClient_static STATIC IMPORTED)
+add_library(TwsSocketClient_shared SHARED IMPORTED)
 
-set(
-	PROJECT_GLOBAL_INCLUDE_DIR
-	${CMAKE_SOURCE_DIR}/include
-	${CMAKE_SOURCE_DIR}/include/IBKR/TwsSocketClient/protobufUnix
-)
+###################
+### Directories ###
+###################
 
-elseif (PROJECT_SYSTEM STREQUAL "Windows")
+set(TWSORDER_DIR  "${CMAKE_SOURCE_DIR}/TwsOrder")
+set(TWSCLIENT_DIR "${CMAKE_SOURCE_DIR}/TwsClient")
 
-set(
-	PROJECT_GLOBAL_INCLUDE_DIR
-	${CMAKE_SOURCE_DIR}/include
-)
+#############
+### Files ###
+#############
 
-endif()
-
-# *************
-# *** Files ***
-# *************
-
-file(GLOB SOURCES_FILE_MAIN ${CMAKE_SOURCE_DIR}/main.cpp)
+file(GLOB SOURCE_FILE_MAIN "${CMAKE_SOURCE_DIR}/main.cpp")
 
 file(
-	GLOB SOURCES_FILES_TWSCLIENT
-	${TWSCLIENT_DIR}/account/*.cpp
-	${TWSCLIENT_DIR}/advisor/*.cpp
-	${TWSCLIENT_DIR}/analysis/*.cpp
-	${TWSCLIENT_DIR}/bond/*.cpp
-	${TWSCLIENT_DIR}/codes/*.cpp
-	${TWSCLIENT_DIR}/connection/*.cpp
-	${TWSCLIENT_DIR}/contract/*.cpp
-	${TWSCLIENT_DIR}/error/*.cpp
-	${TWSCLIENT_DIR}/historical/*.cpp
-	${TWSCLIENT_DIR}/id/*.cpp
-	${TWSCLIENT_DIR}/market/*.cpp
-	${TWSCLIENT_DIR}/miscellaneous/*.cpp
-	${TWSCLIENT_DIR}/news/*.cpp
-	${TWSCLIENT_DIR}/options/*.cpp
-	${TWSCLIENT_DIR}/other/*.cpp
-	${TWSCLIENT_DIR}/pnl/*.cpp
-	${TWSCLIENT_DIR}/portfolio/*.cpp
-	${TWSCLIENT_DIR}/price/*.cpp
-	${TWSCLIENT_DIR}/protobuf/*.cpp
-	${TWSCLIENT_DIR}/scanner/*.cpp
-	${TWSCLIENT_DIR}/system/*.cpp
-	${TWSCLIENT_DIR}/test/*.cpp
-	${TWSCLIENT_DIR}/ticker/*.cpp
-	${TWSCLIENT_DIR}/time/*.cpp
+	GLOB SOURCE_FILES_TWSORDER
+	"${TWSORDER_DIR}/*.cpp"
 )
 
-# *****************
-# *** Libraries ***
-# *****************
+file(
+	GLOB SOURCE_FILES_TWSCLIENT
+	"${TWSCLIENT_DIR}/account/*.cpp"
+	"${TWSCLIENT_DIR}/advisor/*.cpp"
+	"${TWSCLIENT_DIR}/analysis/*.cpp"
+	"${TWSCLIENT_DIR}/bond/*.cpp"
+	"${TWSCLIENT_DIR}/client/*.cpp"
+	"${TWSCLIENT_DIR}/codes/*.cpp"
+	"${TWSCLIENT_DIR}/connection/*.cpp"
+	"${TWSCLIENT_DIR}/contract/*.cpp"
+	"${TWSCLIENT_DIR}/error/*.cpp"
+	"${TWSCLIENT_DIR}/historical/*.cpp"
+	"${TWSCLIENT_DIR}/id/*.cpp"
+	"${TWSCLIENT_DIR}/market/*.cpp"
+	"${TWSCLIENT_DIR}/miscellaneous/*.cpp"
+	"${TWSCLIENT_DIR}/news/*.cpp"
+	"${TWSCLIENT_DIR}/options/*.cpp"
+	"${TWSCLIENT_DIR}/orders/*.cpp"
+	"${TWSCLIENT_DIR}/other/*.cpp"
+	"${TWSCLIENT_DIR}/pnl/*.cpp"
+	"${TWSCLIENT_DIR}/portfolio/*.cpp"
+	"${TWSCLIENT_DIR}/price/*.cpp"
+	"${TWSCLIENT_DIR}/protobuf/*.cpp"
+	"${TWSCLIENT_DIR}/scanner/*.cpp"
+	"${TWSCLIENT_DIR}/system/*.cpp"
+	"${TWSCLIENT_DIR}/test/*.cpp"
+	"${TWSCLIENT_DIR}/ticker/*.cpp"
+	"${TWSCLIENT_DIR}/time/*.cpp"
+)
+
+#################
+### Libraries ###
+#################
 
 add_library(
 	TwsClient_static
 	STATIC
-	${SOURCES_FILES_TWSCLIENT}
+	${SOURCE_FILES_TWSCLIENT}
 )
 
 add_library(
 	TwsClient_shared
 	SHARED
-	${SOURCES_FILES_TWSCLIENT}
+	${SOURCE_FILES_TWSCLIENT}
 )
 
-# *******************
-# *** Executables ***
-# *******************
+###################
+### Executables ###
+###################
 
 add_executable(
 	MyProgram
-	${SOURCES_FILE_MAIN}
+	${SOURCE_FILE_MAIN}
 )
 
-# ***********************
-# *** Target Includes ***
-# ***********************
+#######################
+### Target Includes ###
+#######################
 
 target_include_directories(
 	TwsClient_static
 	PRIVATE
 	${PROJECT_GLOBAL_INCLUDE_DIR}
+	${IBKR_DIR_INCLUDE_TWSSOCKETCLIENT}
+	${IBKR_DIR_INCLUDE_TWSSOCKETCLIENT_PROTOBUF}
 )
 
 target_include_directories(
 	TwsClient_shared
 	PRIVATE
 	${PROJECT_GLOBAL_INCLUDE_DIR}
+	${IBKR_DIR_INCLUDE_TWSSOCKETCLIENT}
+	${IBKR_DIR_INCLUDE_TWSSOCKETCLIENT_PROTOBUF}
 )
 
 target_include_directories(
 	MyProgram
 	PRIVATE
-	${PROJECT_GLOBAL_INCLUDE_DIR}
+	${IBKR_DIR_INCLUDE_TWSSOCKETCLIENT}
+	${IBKR_DIR_INCLUDE_TWSSOCKETCLIENT_PROTOBUF}
 )
 
-# ********************
-# *** Targets Link ***
-# ********************
+####################
+### Targets Link ###
+####################
+
+target_link_libraries(
+	TwsClient_shared
+	libbid
+	TwsSocketClient_shared
+)
 
 target_link_libraries(
 	MyProgram
 	TwsClient_static
+	libbid
+	TwsSocketClient_shared
 )
 
-# **********************
-# *** Set Properties ***
-# **********************
+##############################################
+### Set Propoerties for Local Dependencies ###
+##############################################
+
+if (PROJECT_SYSTEM STREQUAL "windows")
+
+set_target_properties(
+	libbid
+	PROPERTIES
+	IMPORTED_LOCATION "${IBKR_DIR_LINKAGE_ROOT}/tws/libbid.dll"
+)
+
+set_target_properties(
+	TwsSocketClient_static
+	PROPERTIES
+	IMPORTED_LOCATION "${IBKR_DIR_LINKAGE_ROOT}/libTwsSocketClient.a"
+)
+
+set_target_properties(
+	TwsSocketClient_shared
+	PROPERTIES
+	IMPORTED_LOCATION "${IBKR_DIR_LINKAGE_ROOT}/libTwsSocketClient.dll"
+)
+
+elseif (PROJECT_SYSTEM STREQUAL "linux")
+
+set_target_properties(
+	libbid
+	PROPERTIES
+	IMPORTED_LOCATION "${IBKR_DIR_LINKAGE_ROOT}/tws/libbid.so"
+)
+
+set_target_properties(
+	TwsSocketClient_static
+	PROPERTIES
+	IMPORTED_LOCATION "${IBKR_DIR_LINKAGE_ROOT}/libTwsSocketClient.a"
+)
+
+set_target_properties(
+	TwsSocketClient_shared
+	PROPERTIES
+	IMPORTED_LOCATION "${IBKR_DIR_LINKAGE_ROOT}/libTwsSocketClient.so"
+)
+
+elseif (PROJECT_SYSTEM STREQUAL "darwin")
+
+set_target_properties(
+	libbid
+	PROPERTIES
+	IMPORTED_LOCATION "${IBKR_DIR_LINKAGE_ROOT}/tws/libbid.dylib"
+)
+
+set_target_properties(
+	TwsSocketClient_static
+	PROPERTIES
+	IMPORTED_LOCATION "${IBKR_DIR_LINKAGE_ROOT}/libTwsSocketClient.a"
+)
+
+set_target_properties(
+	TwsSocketClient_shared
+	PROPERTIES
+	IMPORTED_LOCATION "${IBKR_DIR_LINKAGE_ROOT}/libTwsSocketClient.dylib"
+)
+
+endif()
+
+######################
+### Set Properties ###
+######################
+
+set_target_properties(
+	MyProgram
+	PROPERTIES
+	OUTPUT_NAME "MyProgram"
+	RUNTIME_OUTPUT_DIRECTORY "${CMAKE_OUTPUT_BIN}"
+)
 
 set_target_properties(
 	TwsClient_static
 	PROPERTIES
 	OUTPUT_NAME "TwsClient"
-	ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib"
+	ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_OUTPUT_LIB}"
 )
 
-if (PROJECT_SYSTEM STREQUAL "Windows")
+if (PROJECT_SYSTEM STREQUAL "windows")
 
 set_target_properties(
 	TwsClient_shared
 	PROPERTIES
 	OUTPUT_NAME "TwsClient"
-	LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib"
+	LIBRARY_OUTPUT_DIRECTORY "${CMAKE_OUTPUT_LIB}"
 )
 
-elseif (PROJECT_SYSTEM STREQUAL "Linux")
+elseif (PROJECT_SYSTEM STREQUAL "linux")
 
 set_target_properties(
 	TwsClient_shared
@@ -163,10 +250,10 @@ set_target_properties(
 	OUTPUT_NAME "TwsClient"
 	VERSION 1.0.0
 	SOVERSION 1.0
-	LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib"
+	LIBRARY_OUTPUT_DIRECTORY "${CMAKE_OUTPUT_LIB}"
 )
 
-elseif (PROJECT_SYSTEM STREQUAL "Darwin")
+elseif (PROJECT_SYSTEM STREQUAL "darwin")
 
 set_target_properties(
 	TwsClient_shared
@@ -176,7 +263,7 @@ set_target_properties(
 	SOVERSION 1.0
 	MACHO_COMPATIBILITY_VERSION 1.0.0
     MACHO_CURRENT_VERSION 1.0
-	LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib"
+	LIBRARY_OUTPUT_DIRECTORY "${CMAKE_OUTPUT_LIB}"
 )
 
 endif()

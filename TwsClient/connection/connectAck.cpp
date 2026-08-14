@@ -17,4 +17,7 @@
 
 void TwsClient::connectAck() {
 
+	if (!m_extraAuth && m_pClient->asyncEConnect())
+		m_pClient->startApi();
+
 }

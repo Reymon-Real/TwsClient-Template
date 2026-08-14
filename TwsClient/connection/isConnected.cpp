@@ -17,5 +17,5 @@
 
 bool TwsClient::isConnected() const {
 
-	return true;
+	return m_pClient->isConnected();;
 }

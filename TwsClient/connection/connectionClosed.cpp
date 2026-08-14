@@ -17,4 +17,6 @@
 
 void TwsClient::connectionClosed() {
 
+	std::cout << "Connection Closed" << std::endl;
+
 }

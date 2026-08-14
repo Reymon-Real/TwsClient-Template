@@ -17,4 +17,9 @@
 
 TwsClient::~TwsClient() {
 
+	// destroy the reader before the client
+	if(m_pReader)
+		m_pReader.reset();
+
+	delete m_pClient;
 }

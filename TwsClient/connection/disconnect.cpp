@@ -17,4 +17,7 @@
 
 void TwsClient::disconnect() const {
 
+	m_pClient->eDisconnect();
+
+	puts("Disconnected");
 }

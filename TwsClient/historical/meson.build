@@ -1,11 +1,11 @@
-# *****************************
-# *** Autor: Reymon Dev     ***
-# *** Datum: 26. Juli. 2026 ***
-# *** Aktua: 27. Juli. 2026 ***
-# *** Lizenz: MIT           ***
-# *****************************
+# *******************************
+# *** Autor: Reymon Dev       ***
+# *** Datum: 08. Juli. 2026   ***
+# *** Aktua: 08. Juli. 2026   ***
+# *** Lizenz: AGPL-3-or-later ***
+# *******************************
 
-SOURCE_FILES_TWSCLIENT_HISTORICAL = files(
+source_files_twsclient_historical = files(
 	'histogramData.cpp',
 	'historicalData.cpp',
 	'historicalDataEnd.cpp',
@@ -23,3 +23,9 @@ SOURCE_FILES_TWSCLIENT_HISTORICAL = files(
 	'reqHistoricalTicks.cpp',
 	'reqTickByTickData.cpp'
 )
+
+# **************************************
+# *** Constrol Addition Source Files ***
+# **************************************
+
+source_files_twsclient += source_files_twsclient_historical

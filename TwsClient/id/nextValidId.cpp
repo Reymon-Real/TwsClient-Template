@@ -18,6 +18,6 @@
 void TwsClient::nextValidId(OrderId orderId) {
 
 	m_orderId = orderId;
-	m_state = TwsClientState_orderoperations;
+	m_state = ST_ORDEROPERATIONS;
 
 }

@@ -1,11 +1,11 @@
-# *****************************
-# *** Autor: Reymon Dev     ***
-# *** Datum: 26. Juli. 2026 ***
-# *** Aktua: 27. Juli. 2026 ***
-# *** Lizenz: MIT           ***
-# *****************************
+# *******************************
+# *** Autor: Reymon Dev       ***
+# *** Datum: 08. Juli. 2026   ***
+# *** Aktua: 24. Juli. 2026   ***
+# *** Lizenz: AGPL-3-or-later ***
+# *******************************
 
-SOURCE_FILES_TWSCLIENT_TIME= files(
+source_files_twsclient_time= files(
 	'currentTime.cpp',
 	'currentTimeInMillis.cpp',
 	'headTimestamp.cpp',
@@ -15,3 +15,9 @@ SOURCE_FILES_TWSCLIENT_TIME= files(
 	'wshEventData.cpp',
 	'wshMetaData.cpp'
 )
+
+# **************************************
+# *** Constrol Addition Source Files ***
+# **************************************
+
+source_files_twsclient += source_files_twsclient_time

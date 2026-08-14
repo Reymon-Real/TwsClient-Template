@@ -1,180 +1,93 @@
-// *****************************
-// *** Autor: Reymon Dev     ***
-// *** Datum: 26. Juli. 2026 ***
-// *** Aktua: 27. Juli. 2026 ***
-// *** Lizenz: MIT           ***
-// *****************************
+//###############################
+//### Autor: Reymon Dev       ###
+//### Datum: 12. August. 2026 ###
+//### Aktua: 12. August. 2026 ###
+//### Lizenz: MIT             ###
+//###############################
 
-// *****************
-// *** Libraries ***
-// *****************
+//#################
+//### Libraries ###
+//#################
 
+#include <stdio.h>
+#include <cstddef>
+#include <chrono>
+#include <thread>
 #include <TwsClient.hpp>
 
-// ***********************
-// *** Static Function ***
-// ***********************
+//#################
+//### Constants ###
+//#################
 
-// *****************
-// *** Functions ***
-// *****************
+#define MAX_ATTEMPTS (50) // Max number of disconnections
+#define SLEEP_TIME   (10) // 10 seconds for sleep
 
-void* TwsClientConnection_00(void* args) {
+//############################################
+//### Function for the connect to the IBKR ###
+//############################################
 
-	return NULL;
-}
+void TwsClientConnection(int argc, void* argv) {
 
-void* TwsClientConnection_01(void* args) {
+	// ************************
+	// *** Define Variables ***
+	// ************************
 
-	return NULL;
-}
+	size_t attempt = 0;   // Counter of the disconnection
+	TwsClient client; // Class of client for connecto to IBKR
 
-void* TwsClientConnection_02(void* args) {
+	// ***********************
+	// *** Connection Loop ***
+	// ***********************
 
-	return NULL;
-}
+	while(true) {
 
-void* TwsClientConnection_03(void* args) {
+		// --------------------
+		// --- Control Loop ---
+		// --------------------
 
-	return NULL;
-}
+		++attempt;
 
-void* TwsClientConnection_04(void* args) {
+		// ------------------------------
+		// --- Set Values for connect ---
+		// ------------------------------
 
-	return NULL;
-}
+		const char* host = "127.0.0.1"; // Base host to connect
+		int port         = 7496;        // Port of the host to connect
+		int userId       = 0;           // User ID (unique for connection)
 
-void* TwsClientConnection_05(void* args) {
+		// ----------------------
+		// --- Set Connection ---
+		// ----------------------
 
-	return NULL;
-}
+		client.connect(
+			host,   // Host IP
+			port,   // Port to coonect
+			userId, // Unique number for connection,
+			false   // Extra Authentication
+		);
 
-void* TwsClientConnection_06(void* args) {
+		// -----------------
+		// --- Main loop ---
+		// -----------------
 
-	return NULL;
-}
+		while (client.isConnected())
+			client.start(
+				0, 		// Number of params
+				nullptr // Pointer to structure of Parameters
+			);
 
-void* TwsClientConnection_07(void* args) {
+		// -------------------------
+		// --- Conditional break ---
+		// -------------------------
 
-	return NULL;
-}
+		if (attempt >= MAX_ATTEMPTS) break; // Break loop if disconnection equal to 50
 
-void* TwsClientConnection_08(void* args) {
+		// ----------------------------------
+		// --- Sleep Thread if disconnect ---
+		// ----------------------------------
 
-	return NULL;
-}
-
-void* TwsClientConnection_09(void* args) {
-
-	return NULL;
-}
-
-void* TwsClientConnection_0A(void* args) {
-
-	return NULL;
-}
-
-void* TwsClientConnection_0B(void* args) {
-
-	return NULL;
-}
-
-void* TwsClientConnection_0C(void* args) {
-
-	return NULL;
-}
-
-void* TwsClientConnection_0D(void* args) {
-
-	return NULL;
-}
-
-void* TwsClientConnection_0E(void* args) {
-
-	return NULL;
-}
-
-void* TwsClientConnection_0F(void* args) {
-
-	return NULL;
-}
-
-void* TwsClientConnection_10(void* args) {
-
-	return NULL;
-}
-
-void* TwsClientConnection_11(void* args) {
-
-	return NULL;
-}
-
-void* TwsClientConnection_12(void* args) {
-
-	return NULL;
-}
-
-void* TwsClientConnection_13(void* args) {
-
-	return NULL;
-}
-
-void* TwsClientConnection_14(void* args) {
-
-	return NULL;
-}
-
-void* TwsClientConnection_15(void* args) {
-
-	return NULL;
-}
-
-void* TwsClientConnection_16(void* args) {
-
-	return NULL;
-}
-
-void* TwsClientConnection_17(void* args) {
-
-	return NULL;
-}
-
-void* TwsClientConnection_18(void* args) {
-
-	return NULL;
-}
-
-void* TwsClientConnection_19(void* args) {
-
-	return NULL;
-}
-
-void* TwsClientConnection_1A(void* args) {
-
-	return NULL;
-}
-
-void* TwsClientConnection_1B(void* args) {
-
-	return NULL;
-}
-
-void* TwsClientConnection_1C(void* args) {
-
-	return NULL;
-}
-
-void* TwsClientConnection_1D(void* args) {
-
-	return NULL;
-}
-
-void* TwsClientConnection_1E(void* args) {
-
-	return NULL;
-}
-
-void* TwsClientConnection_1F(void* args) {
-
-	return NULL;
+		std::this_thread::sleep_for(
+			std::chrono::seconds(SLEEP_TIME) // Sleep thread while IB Gateway or Trader Work Station log in
+		);
+	}
 }

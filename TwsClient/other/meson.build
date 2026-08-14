@@ -1,11 +1,11 @@
-# *****************************
-# *** Autor: Reymon Dev     ***
-# *** Datum: 26. Juli. 2026 ***
-# *** Aktua: 27. Juli. 2026 ***
-# *** Lizenz: MIT           ***
-# *****************************
+# *******************************
+# *** Autor: Reymon Dev       ***
+# *** Datum: 08. Juli. 2026   ***
+# *** Aktua: 08. Juli. 2026   ***
+# *** Lizenz: AGPL-3-or-later ***
+# *******************************
 
-SOURCE_FILES_TWSCLIENT_OTHER = files(
+source_files_twsclient_other = files(
 	'deltaNeutralValidation.cpp',
 	'displayGroupList.cpp',
 	'displayGroupUpdated.cpp',
@@ -22,3 +22,9 @@ SOURCE_FILES_TWSCLIENT_OTHER = files(
 	'verifyAndAuthMessageAPI.cpp',
 	'verifyCompleted.cpp'
 )
+
+# **************************************
+# *** Constrol Addition Source Files ***
+# **************************************
+
+source_files_twsclient += source_files_twsclient_other

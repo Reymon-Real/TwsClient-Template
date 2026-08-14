@@ -1,0 +1,55 @@
+###############################
+### Autor: Reymon Dev       ###
+### Datum: 12. August. 2026 ###
+### Aktua: 12. August. 2026 ###
+### Lizenz: MIT             ###
+###############################
+
+##################
+### Main Rules ###
+##################
+
+all: $(OBJECT_FILES_TWSORDER_CPP) $(OBJECT_FILES_TWSCLIENT_CPP) $(OBJECT_FILE_MAIN) \
+	 $(LIBRARY_STATIC_TWSORDER) $(LIBRARY_STATIC_TWSCLIENT) \
+	 $(LIBRARY_SHARED_VERSION_TWSORDER) $(LIBRARY_SHARED_SOVERSION_TWSORDER) $(LIBRARY_SHARED_SYMLINK_TWSORDER) \
+	 $(LIBRARY_SHARED_VERSION_TWSCLIENT) $(LIBRARY_SHARED_SOVERSION_TWSCLIENT) $(LIBRARY_SHARED_SYMLINK_TWSCLIENT) \
+	 $(BINARY_EXECUTABLE_MYPROGRAM)
+
+setup:
+	@mkdir -p $(BUILDDIR)
+
+compile: all
+
+install:
+	install $(LIBRARY_STATIC_TWSORDER)
+	install $(LIBRARY_STATIC_TWSCLIENT)
+	install $(LIBRARY_SHARED_VERSION_TWSORDER)
+	install $(LIBRARY_SHARED_SOVERSION_TWSORDER)
+	install $(LIBRARY_SHARED_SYMLINK_TWSORDER)
+	install $(LIBRARY_SHARED_VERSION_TWSCLIENT)
+	install $(LIBRARY_SHARED_SOVERSION_TWSCLIENT)
+	install $(LIBRARY_SHARED_SYMLINK_TWSCLIENT)
+
+###################
+### Clean Rules ###
+###################
+
+clean:
+	@rm -f $(OBJECT_FILES_TWSORDER_CPP) $(OBJECT_FILES_TWSCLIENT_CPP) $(OBJECT_MAIN_FILE)
+	@rm -f $(LIBRARY_SHARED_VERSION_TWSORDER) $(LIBRARY_SHARED_SOVERSION_TWSORDER) $(LIBRARY_SHARED_SYMLINK_TWSORDER)
+	@rm -f $(LIBRARY_SHARED_VERSION_TWSCLIENT) $(LIBRARY_SHARED_SOVERSION_TWSCLIENT) $(LIBRARY_SHARED_SYMLINK_TWSCLIENT)
+	@rm -f $(BINARY_EXECUTABLE_MYPROGRAM)
+	@echo "Success Clean"
+
+distclean:
+	rm -rf $(BUILDDIR)
+
+############################
+### Debug and test rules ###
+############################
+
+run: $(BINARY_EXECUTABLE_MYPROGRAM)
+	@./$<
+
+gdb: $(BINARY_EXECUTABLE_MYPROGRAM)
+	@gdb $<
