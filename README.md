@@ -34,25 +34,25 @@ For use make use scripts of `bash`, `cmd` or `powershell`
 
 ## Scripts
 
-The form is `./project.<extension> --<type of operation> --<system> --<architecture> --<build system> <flags for the build system to use>`
+The form is `./project.<extension> --<type of operation> --system=<system> --arch=<architecture> --buildsys=<build system> --buildtype=<debug or release> <flags for the build system to use>`
 
 ### Examples
 
-`./project.sh --setup --linux --x86_64 --make`
-`./project.sh --compile --linux --x86_64 --make -j4`
-`./project.sh --install --linux --x86_64 --make`
+`./project.sh --setup --system=linux --arch=x86_64 --buildsys=make --buildtype=debug`
+`./project.sh --compile --system=linux --arch=x86_64 --buildsys=make --buildtype=debug -j4`
+`./project.sh --install --system=linux --arch=x86_64 --buildsys=make --buildtype=debug`
 
-`./project.sh --setup --linux --x86_64 --cmake-make`
-`./project.sh --compile --linux --x86_64 --cmake-make -j4`
-`./project.sh --install --linux --x86_64 --cmake-make`
+`./project.sh --setup --system=linux --arch=x86_64 --buildsys=meson --buildtype=debug --wipe`
+`./project.sh --compile --system=linux --arch=x86_64 --buildsys=meson --buildtype=debug -j4`
+`./project.sh --install --system=linux --arch=x86_64 --buildsys=meson --buildtype=debug`
 
-`./project.sh --setup --linux --x86_64 --cmake-ninja`
-`./project.sh --compile --linux --x86_64 --cmake-ninja -j4`
-`./project.sh --install --linux --x86_64 --cmake-ninja`
+`./project.sh --setup --system=linux --arch=x86_64 --buildsys=cmake-make --buildtype=debug`
+`./project.sh --compile --system=linux --arch=x86_64 --buildsys=cmake-make --buildtype=debug -j4`
+`./project.sh --install --system=linux --arch=x86_64 --buildsys=cmake-make --buildtype=debug`
 
-`./project.sh --setup --linux --x86_64 --meson --wipe`
-`./project.sh --compile --linux --x86_64 --meson -j4`
-`./project.sh --install --linux --x86_64 --meson`
+`./project.sh --setup --system=linux --arch=x86_64 --buildsys=cmake-ninja --buildtype=debug`
+`./project.sh --compile --system=linux --arch=x86_64 --buildsys=cmake-ninja --buildtype=debug -j4`
+`./project.sh --install --system=linux --arch=x86_64 --buildsys=cmake-ninja --buildtype=debug`
 
 Apply equal to `powershell` and `cmd`
 
