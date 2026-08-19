@@ -257,7 +257,7 @@ elif [[ "$OPERATION" == "clean" ]]; then
 		;;
 		
 		cmake-make)
-			make -C clean "$BUILDDIR" $FLAGS
+			make clean -C "$BUILDDIR" $FLAGS
 		;;
 		
 		cmake-ninja)

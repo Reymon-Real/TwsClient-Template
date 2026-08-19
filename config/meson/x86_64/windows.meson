@@ -7,8 +7,8 @@
 
 [binaries]
 
-c     = 'mvsc'
-cpp   = 'msvc'
+c   = 'msvc'
+cpp = 'msvc'
 
 [host_machine]
 

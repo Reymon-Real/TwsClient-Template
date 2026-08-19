@@ -157,9 +157,15 @@ target_link_libraries(
 if (PROJECT_SYSTEM STREQUAL "windows")
 
 set_target_properties(
-	libbid
+	libbid_static
 	PROPERTIES
-	IMPORTED_LOCATION "${IBKR_DIR_LINKAGE_ROOT}/tws/libbid.dll"
+	IMPORTED_LOCATION "${IBKR_DIR_LINKAGE_ROOT}/libbid.a"
+)
+
+set_target_properties(
+	libbid_shared
+	PROPERTIES
+	IMPORTED_LOCATION "${IBKR_DIR_LINKAGE_ROOT}/libbid.dll"
 )
 
 set_target_properties(
