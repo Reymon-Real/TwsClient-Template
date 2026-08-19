@@ -62,9 +62,9 @@ These options tell `make` the relative path to the linker for linking the dynami
 
 The following set of options tells `make` which dependencies to link statically or dynamically. If they are not defined, or are defined with a value other than `true`, static library linking will be used by default.
 
-## TWSORDER_SHARED_LINAKGE
-## TWSCLIENT_SHARED_LINAKGE
-## TWSCONTRACT_SHARED_LINAKGE
+## TWSORDER_SHARED_LINKAGE
+## TWSCLIENT_SHARED_LINKAGE
+## TWSCONTRACT_SHARED_LINKAGE
 
 ## LIBBID_SHARED_LINKAGE
 ## TWSAPI_SHARED_LINKAGE

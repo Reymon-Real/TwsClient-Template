@@ -1,4 +1,4 @@
-# Cross Compiling
+# Native Compiling
 
 ## Meson and CMake
 

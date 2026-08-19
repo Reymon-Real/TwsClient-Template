@@ -40,9 +40,9 @@ MAKE_INSTALL_LIBDIR := $(MAKE_INSTALL_PREFIX)/lib
 ### Compilation Options ###
 ###########################
 
-#TWSORDER_SHARED_LINAKGE    := true
-#TWSCLIENT_SHARED_LINAKGE   := true
-#TWSCONTRACT_SHARED_LINAKGE := true
+#TWSORDER_SHARED_LINKAGE    := true
+#TWSCLIENT_SHARED_LINKAGE   := true
+#TWSCONTRACT_SHARED_LINKAGE := true
 
 #LIBBID_SHARED_LINKAGE := true # Intel Library
 #TWSAPI_SHARED_LINKAGE := true # TwsSocketClient Library

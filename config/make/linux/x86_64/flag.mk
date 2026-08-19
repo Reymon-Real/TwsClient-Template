@@ -47,7 +47,7 @@ CXXLDFLAGS := -Wl,--warn-once -Wl,-flto -Wl,-m elf_x86_64
 
 ifeq ($(BUILDTYPE), release)
 
-CCLDFLAGS += -Wl,--strip-debug -Wl,--discard-all
-CCXXFLAGS += -Wl,--strip-debug -Wl,--discard-all
+CCLDFLAGS  += -Wl,--strip-debug -Wl,--discard-all
+CXXLDFLAGS += -Wl,--strip-debug -Wl,--discard-all
 
 endif
