@@ -15,6 +15,7 @@ source_files_twsclient_protobuf = files(
 	'commissionAndFeesReportProtoBuf.cpp',
 	'completedOrderProtoBuf.cpp',
 	'completedOrdersEndProtoBuf.cpp',
+	'configResponseProtoBuf.cpp',
 	'contractDataEndProtoBuf.cpp',
 	'contractDataProtoBuf.cpp',
 	'currentTimeInMillisProtoBuf.cpp',
@@ -77,6 +78,7 @@ source_files_twsclient_protobuf = files(
 	'tickStringProtoBuf.cpp',
 	'updateAccountTimeProtoBuf.cpp',
 	'updateAccountValueProtoBuf.cpp',
+	'updateConfigResponseProtoBuf.cpp',
 	'updateMarketDepthL2ProtoBuf.cpp',
 	'updateMarketDepthProtoBuf.cpp',
 	'updateNewsBulletinProtoBuf.cpp',
@@ -92,4 +94,8 @@ source_files_twsclient_protobuf = files(
 # *** Constrol Addition Source Files ***
 # **************************************
 
+if system != 'windows'
+
 source_files_twsclient += source_files_twsclient_protobuf
+
+endif

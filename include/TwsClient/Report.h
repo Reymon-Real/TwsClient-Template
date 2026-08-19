@@ -5,8 +5,8 @@
 // *** License: AGPL-3-or-later   ***
 // **********************************
 
-#ifndef TWSCLIENT_TEMPLATE_REPORT_H
-#define TWSCLIENT_TEMPLATE_REPORT_H
+#ifndef TWSCLIENT_REPORT_H
+#define TWSCLIENT_REPORT_H
 
 // ***************
 // *** Aliases ***
@@ -23,7 +23,6 @@
 // ******************
 // *** Structures ***
 // ******************
-
 
 // *****************
 // *** Functions ***

@@ -60,10 +60,9 @@ void TwsClientConnection(int argc, void* argv) {
 		// ----------------------
 
 		client.connect(
-			host,   // Host IP
-			port,   // Port to coonect
-			userId, // Unique number for connection,
-			false   // Extra Authentication
+			host,  // Host IP
+			port,  // Port to coonect
+			userId // Unique number for connection,
 		);
 
 		// -----------------

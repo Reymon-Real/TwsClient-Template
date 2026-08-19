@@ -5,8 +5,8 @@
 // *** License: AGPL-3-or-later   ***
 // **********************************
 
-#ifndef TWSCLIENT_TEMPLATE_RISK_H
-#define TWSCLIENT_TEMPLATE_RISK_H
+#ifndef TWSCLIENT_RISK_H
+#define TWSCLIENT_RISK_H
 
 // ***************
 // *** Aliases ***
@@ -20,9 +20,9 @@
 // *** Unions ***
 // **************
 
-// ****************************
-// *** Structure and Clases ***
-// ****************************
+// ******************
+// *** Structures ***
+// ******************
 
 // ************************
 // *** Global Variables ***

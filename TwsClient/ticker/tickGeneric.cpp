@@ -15,6 +15,6 @@
 // *** Function ***
 // ****************
 
-void TwsClient::tickGeneric(TickerId tickerId, TickType tickType, double value) {
+void TwsClient::tickGeneric(int tickerId, TickType tickType, double value) {
 
 }

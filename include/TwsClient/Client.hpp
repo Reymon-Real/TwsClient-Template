@@ -34,10 +34,14 @@ private:
 	EReaderOSSignal m_osSignal;
 	EClientSocket*  m_pClient;
 
-	TwsClientState_t m_state;
-	time_t           m_sleepDeadline;
-	OrderId          m_orderId;
+	TwsSocketClientState_t m_state;
+
+	int    m_reqId;
+	int    m_orderId;
+	time_t m_sleepDeadline;
+	
 	std::unique_ptr<EReader> m_pReader;
+	
 	bool             m_extraAuth;
 	std::string      m_bboExchange;
 
@@ -48,10 +52,11 @@ public:
 	// ***********************
 
 	TwsClient();
+
 	~TwsClient();
 
 	// ********************************
-	// *** Most Important Functions ***
+	// *** Most important Functions ***
 	// ********************************
 
 	void start(int, void*);
@@ -60,7 +65,7 @@ public:
 	// *** Connection Functions ***
 	// ****************************
 
-	bool connect(const char*, int, int, bool);
+	bool connect(const char*, int, int);
 	void disconnect() const;
 	bool isConnected() const;
 
@@ -68,7 +73,12 @@ public:
 	// *** Unique Functions ***
 	// ************************
 
-	OrderId nextId();
+	inline int nextId() {
+		
+		m_orderId = m_orderId + 1;
+
+		return m_orderId;
+	}
 
 	// ****************************
 	// *** Virtual Declarations ***
@@ -98,16 +108,11 @@ private:
 	void historicalDataRequests();
 	void optionsOperations();
 	void orderOperations();
-	void ocaSamples();
-	void conditionSamples();
-	void bracketSample();
-	void hedgeSample();
 	void contractOperations();
 	void marketScanners();
 	void fundamentals();
 	void bulletins();
 	void testAlgoSamples();
-	void financialAdvisorOrderSamples();
 	void financialAdvisorOperations();
 	void testDisplayGroups();
 	void miscellaneous();

@@ -11,15 +11,17 @@ extern "C" {
 #endif // __cplusplus
 //**********************
 
-#ifndef TWSCLIENT_TEMPLATE_H
-#define TWSCLIENT_TEMPLATE_H
+#ifndef TWSCLIENT_H
+#define TWSCLIENT_H
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 #include <stddef.h>
 #include <stdint.h>
 #include <string.h>
 #include <time.h>
+#include <yyjson.h>
 
 #include "TwsClient/Common.h"
 #include "TwsClient/Math.h"
@@ -27,7 +29,7 @@ extern "C" {
 #include "TwsClient/Report.h"
 #include "TwsClient/Risk.h"
 
-#endif // TWSCLIENT_TEMPLATE_H
+#endif // TWSCLIENT_H
 
 //**********************
 #if defined(__cplusplus)

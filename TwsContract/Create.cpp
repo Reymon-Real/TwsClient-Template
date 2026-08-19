@@ -9,30 +9,28 @@
 // *** Libraries ***
 // *****************
 
-#include <TwsClient.hpp>
-#include <TwsOrder.hpp>
+#include <TwsContract.hpp>
 
 // ***************************
 // *** Send Order Function ***
 // ***************************
 
-Order TwsOrder::LimitOrder(std::string action, double lmtPrice, Decimal quantity) {
+Contract TwsContract::Create(const char* symbol, const char* secType, const char* currency, const char* exchange) {
 
 	// *****************
 	// *** Variables ***
 	// *****************
 
-	Order order;
+	Contract contract;
 
 	// **********************
 	// *** Order Settings ***
 	// **********************
 
-	order.action        = action;
-	order.orderType     = "LMT";
-	order.totalQuantity = quantity;
-	order.lmtPrice      = lmtPrice;
-	order.tif           = "DAY";
+	contract.symbol   = symbol;
+	contract.secType  = secType;
+	contract.currency = currency;
+	contract.exchange = exchange;
 
-	return order;
+	return contract;
 }

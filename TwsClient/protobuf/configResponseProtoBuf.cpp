@@ -9,12 +9,15 @@
 // *** Libraries ***
 // *****************
 
+#include <cstdio>
 #include <TwsClient.hpp>
 
 // ****************
 // *** Function ***
 // ****************
 
-void TwsClient::financialAdvisorOrderSamples() {
-
+void TwsClient::configResponseProtoBuf(const protobuf::ConfigResponse& configResponseProto) {
+	printf("==== Config Response Begin ====\n");
+	printf("%s\n", configResponseProto.DebugString().c_str());
+	printf("==== Config Response End ====\n");
 }

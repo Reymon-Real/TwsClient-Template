@@ -5,8 +5,8 @@
 // *** License: AGPL-3-or-later***
 // *******************************
 
-#ifndef TWSCLIENT_TEMPLATE_MATH_H
-#define TWSCLIENT_TEMPLATE_MATH_H
+#ifndef TWSCLIENT_MATH_H
+#define TWSCLIENT_MATH_H
 
 // ***************
 // *** Aliases ***
@@ -16,15 +16,16 @@
 // *** Enumerates ***
 // ******************
 
-// ******************
-// *** Structures ***
-// ******************
+// ************************
+// *** Inline Functions ***
+// ************************
+
+static inline double ln(double x) {
+	return log(x);
+}
 
 // *****************
 // *** Functions ***
 // *****************
-
-extern void TwsClient_mid_price(double, double);
-extern void TwsClient_orderbook_imbalance(double, double);
 
 #endif // TWSCLIENT_TEMPLATE_MATH_H

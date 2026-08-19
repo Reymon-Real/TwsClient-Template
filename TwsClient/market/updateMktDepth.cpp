@@ -15,6 +15,6 @@
 // *** Function ***
 // ****************
 
-void TwsClient::updateMktDepth(TickerId id, int position, int operation, int side, double price, Decimal size) {
+void TwsClient::updateMktDepth(int id, int position, int operation, int side, double price, Decimal size) {
 
 }

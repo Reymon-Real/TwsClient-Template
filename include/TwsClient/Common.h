@@ -12,9 +12,11 @@
 // *** Aliases ***
 // ***************
 
-#define TwsClient_zero (0)               // Macro alias for 0
-#define TwsClient_instrument_size (255)  // Max length root of the files
-#define TwsClient_max_instruments (32)   // Number max of parallel connection supported for Tws
+#define TwsClient_root_instrument_size (255)  // Max length root of the files
+#define TwsClient_max_instruments      (032)   // Number max of parallel connection supported for Tws
+
+#define PING_DEADLINE       (02) // seconds
+#define SLEEP_BETWEEN_PINGS (30) // seconds
 
 typedef void* TwsClientHandle;
 
@@ -22,7 +24,7 @@ typedef void* TwsClientHandle;
 // *** Enumerates ***
 // ******************
 
-typedef enum TwsClientState {
+typedef enum TwsSocketClientState {
 
 	ST_CONNECT,
 	ST_TICKDATAOPERATION,
@@ -97,27 +99,34 @@ typedef enum TwsClientState {
 	ST_REROUTECFD_ACK,
 	ST_MARKETRULE,
 	ST_MARKETRULE_ACK,
-	ST_PNL,
-	ST_PNL_ACK,
-	ST_PNLSINGLE,
-	ST_PNLSINGLE_ACK,
-	ST_CONTFUT,
-	ST_CONTFUT_ACK,
+    ST_PNL,
+    ST_PNL_ACK,
+    ST_PNLSINGLE,
+    ST_PNLSINGLE_ACK,
+    ST_CONTFUT,
+    ST_CONTFUT_ACK,
 	ST_PING,
 	ST_PING_ACK,
-	ST_REQHISTORICALTICKS,
-	ST_REQHISTORICALTICKS_ACK,
-	ST_REQTICKBYTICKDATA,
-	ST_REQTICKBYTICKDATA_ACK,
+    ST_REQHISTORICALTICKS,
+    ST_REQHISTORICALTICKS_ACK,
+    ST_REQTICKBYTICKDATA,
+    ST_REQTICKBYTICKDATA_ACK,
 	ST_WHATIFSAMPLES,
 	ST_WHATIFSAMPLES_ACK,
 	ST_IDLE,
 	ST_IBKRATSSAMPLE,
 	ST_IBKRATSSAMPLE_ACK,
 	ST_WSH,
-	ST_WSH_ACK
+	ST_WSH_ACK,
+	ST_CONFIG,
+	ST_CONFIG_ACK,
+	ST_ORDER_PARENTCHILD_OPERATIONS,
+	ST_ORDER_PARENTCHILD_OPERATIONS_ACK,
+	ST_NEWS_OPERATIONS_PROTO,
+	ST_NEWS_OPERATIONS_PROTO_ACK,
+	ST_DISCONNECT
 
-} TwsClientState_t;
+} TwsSocketClientState_t;
 
 // **************
 // *** Unions ***

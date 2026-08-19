@@ -15,7 +15,7 @@
 // *** Function ***
 // ****************
 
-void TwsClient::nextValidId(OrderId orderId) {
+void TwsClient::nextValidId(int orderId) {
 
 	m_orderId = orderId;
 	m_state = ST_ORDEROPERATIONS;

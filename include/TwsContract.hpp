@@ -5,8 +5,8 @@
 // *** Lizenz: AGPL-3-or-later ***
 // *******************************
 
-#ifndef TWSORDER_HPP
-#define TWSORDER_HPP
+#ifndef TWSCONTRACT_HPP
+#define TWSCONTRACT_HPP
 
 // *****************
 // *** Libraries ***
@@ -35,13 +35,13 @@
 // *** Clases ***
 // **************
 
-class TwsOrder {
+class TwsContract {
 
 public:
 
-	// Create a limit orders
-	static Order Limit(std::string, Decimal, double);
+	// Create a contract
+	static Contract Create(const char*, const char*, const char*, const char*);
 
 };
 
-#endif // TWSORDER_HPP
+#endif // TWSCONTRACT_HPP

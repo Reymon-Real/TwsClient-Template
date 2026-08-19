@@ -1,0 +1,86 @@
+###############################
+### Autor: Reymon Dev       ###
+### Datum: 12. August. 2026 ###
+### Aktua: 12. August. 2026 ###
+### Lizenz: MIT             ###
+###############################
+
+##################
+### Main Rules ###
+##################
+
+all: object library_static library_shared symlink_soversion symlink executable
+
+setup:
+	@mkdir -p $(BUILDDIR)
+
+compile: all
+
+install:
+	install $(BINARY_LIBRARY_STATIC_TWSORDER)
+	install $(BINARY_LIBRARY_STATIC_TWSCLIENT)
+	install $(BINARY_LIBRARY_SHARED_TWSORDER)
+	install $(BINARY_LIBRARY_SHARED_TWSCLIENT)
+	install $(SYMLINK_LIBRARY_SHARED_SOVERSION_TWSORDER)
+	install $(SYMLINK_LIBRARY_SHARED_SOVERSION_TWSCLIENT)
+	install $(SYMLINK_LIBRARY_SHARED_TWSORDER)
+	install $(SYMLINK_LIBRARY_SHARED_TWSCLIENT)
+
+###################
+### Clean Rules ###
+###################
+
+clean:
+	@rm -f $(OBJECT_FILES_TWSORDER_CPP) $(OBJECT_FILES_TWSCLIENT_CPP) $(OBJECT_FILES_TWSCONTRACT_CPP) $(OBJECT_FILE_MAIN)
+	@rm -f $(BINARY_LIBRARY_STATIC_TWSORDER) $(BINARY_LIBRARY_STATIC_TWSCLIENT) $(BINARY_LIBRARY_STATIC_TWSCONTRACT)
+	@rm -f $(BINARY_LIBRARY_SHARED_TWSORDER) $(BINARY_LIBRARY_SHARED_TWSCLIENT) $(BINARY_LIBRARY_SHARED_TWSCONTRACT)
+	@rm -f $($(SYMLINK_LIBRARY_SHARED_SOVERSION_TWSORDER) $(SYMLINK_LIBRARY_SHARED_SOVERSION_TWSCLIENT) $(SYMLINK_LIBRARY_SHARED_SOVERSION_TWSCONTRACT))
+	@rm -f $(SYMLINK_LIBRARY_SHARED_TWSORDER) $(SYMLINK_LIBRARY_SHARED_TWSCLIENT) $(SYMLINK_LIBRARY_SHARED_TWSCONTRACT)
+	@rm -f $(BINARY_EXECUTABLE_MYPROGRAM)
+	@echo "Success Clean"
+
+distclean:
+	rm -rf $(BUILDDIR)
+
+############################
+### Debug and test rules ###
+############################
+
+run: $(BINARY_EXECUTABLE_MYPROGRAM)
+	@./$<
+
+gdb: $(BINARY_EXECUTABLE_MYPROGRAM)
+	@$(GDB) $<
+
+
+#########################
+### Compilation Rules ###
+#########################
+
+object: \
+	$(OBJECT_FILES_TWSORDER_CPP) \
+	$(OBJECT_FILES_TWSCLIENT_CPP) \
+	$(OBJECT_FILES_TWSCONTRACT_CPP) \
+	$(OBJECT_FILE_MAIN)
+
+library_static: \
+	$(BINARY_LIBRARY_STATIC_TWSORDER) \
+	$(BINARY_LIBRARY_STATIC_TWSCLIENT) \
+	$(BINARY_LIBRARY_STATIC_TWSCONTRACT) | object
+
+library_shared: \
+	$(BINARY_LIBRARY_SHARED_TWSORDER) \
+	$(BINARY_LIBRARY_SHARED_TWSCLIENT) \
+	$(BINARY_LIBRARY_SHARED_TWSCONTRACT) | object
+
+symlink_soversion: \
+	$(SYMLINK_LIBRARY_SHARED_SOVERSION_TWSORDER) \
+	$(SYMLINK_LIBRARY_SHARED_SOVERSION_TWSCLIENT) \
+	$(SYMLINK_LIBRARY_SHARED_SOVERSION_TWSCONTRACT) | library_shared
+
+symlink: \
+	$(SYMLINK_LIBRARY_SHARED_TWSORDER) \
+	$(SYMLINK_LIBRARY_SHARED_TWSCLIENT) \
+	$(SYMLINK_LIBRARY_SHARED_TWSCONTRACT) | symlink_soversion
+
+executable: $(BINARY_EXECUTABLE_MYPROGRAM) | object symlink

@@ -15,6 +15,6 @@
 // *** Function ***
 // ****************
 
-void TwsClient::fundamentalData(TickerId reqId, const std::string& data) {
+void TwsClient::fundamentalData(int reqId, const std::string& data) {
 
 }

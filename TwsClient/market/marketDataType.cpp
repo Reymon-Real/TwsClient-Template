@@ -19,6 +19,6 @@ void TwsClient::marketDataType() {
 
 }
 
-void TwsClient::marketDataType(TickerId reqId, int marketDataType) {
+void TwsClient::marketDataType(int reqId, int marketDataType) {
 
 }

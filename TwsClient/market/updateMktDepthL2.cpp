@@ -15,6 +15,6 @@
 // *** Function ***
 // ****************
 
-void TwsClient::updateMktDepthL2(TickerId id, int position, const std::string& marketMaker, int operation, int side, double price, Decimal size, bool isSmartDepth) {
+void TwsClient::updateMktDepthL2(int id, int position, const std::string& marketMaker, int operation, int side, double price, Decimal size, bool isSmartDepth) {
 
 }

@@ -1,9 +1,15 @@
 ###############################
 ### Autor: Reymon Dev       ###
 ### Datum: 09. August. 2026 ###
-### Aktua: 09. August. 2026 ###
+### Aktua: 17. August. 2026 ###
 ### Lizenz: MIT             ###
 ###############################
+
+###############
+### Options ###
+###############
+
+include Options.mk
 
 ######################
 ### Shell Settings ###
@@ -41,6 +47,12 @@ include ./config/make/$(SYSTEM)/$(ARCH)/folder.mk
 
 include ./config/make/$(SYSTEM)/$(ARCH)/file.mk
 include ./config/make/$(SYSTEM)/$(ARCH)/find.mk
+
+####################
+### Dependencies ###
+####################
+
+include ./config/make/$(SYSTEM)/$(ARCH)/dependencies.mk
 
 #####################
 ### Tool Settings ###

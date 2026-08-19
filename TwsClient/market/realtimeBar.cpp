@@ -15,6 +15,6 @@
 // *** Function ***
 // ****************
 
-void TwsClient::realtimeBar(TickerId reqId, long time, double open, double high, double low, double close, Decimal volume, Decimal wap, int count) {
+void TwsClient::realtimeBar(int reqId, long long time, double open, double high, double low, double close, Decimal volume, Decimal wap, int count) {
 
 }

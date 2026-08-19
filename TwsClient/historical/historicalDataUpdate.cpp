@@ -15,6 +15,6 @@
 // *** Function ***
 // ****************
 
-void TwsClient::historicalDataUpdate(TickerId reqId, const Bar& bar) {
+void TwsClient::historicalDataUpdate(int reqId, const Bar& bar) {
 
 }

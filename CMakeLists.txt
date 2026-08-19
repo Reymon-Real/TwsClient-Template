@@ -22,13 +22,14 @@ string(TOLOWER "${CMAKE_SYSTEM_NAME}" PROJECT_SYSTEM)
 ### Options ###
 ###############
 
-include(options.cmake)
+include(Options.cmake)
 
 ##########################
 ### Local Dependencies ###
 ##########################
 
-add_library(libbid SHARED IMPORTED)
+add_library(libbid_static STATIC IMPORTED)
+add_library(libbid_shared STATIC IMPORTED)
 add_library(TwsSocketClient_static STATIC IMPORTED)
 add_library(TwsSocketClient_shared SHARED IMPORTED)
 

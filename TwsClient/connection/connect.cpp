@@ -15,7 +15,7 @@
 // *** Function ***
 // ****************
 
-bool TwsClient::connect(const char* host, int port, int clientId, bool extraAuth) {
+bool TwsClient::connect(const char* host, int port, int clientId) {
 
 	printf(
 		"Connecting to %s:%d "
@@ -25,7 +25,7 @@ bool TwsClient::connect(const char* host, int port, int clientId, bool extraAuth
 		clientId
 	);
 	
-	bool bRes = m_pClient->eConnect(host, port, clientId, extraAuth);	
+	bool bRes = m_pClient->eConnect(host, port, clientId, m_extraAuth);	
 
 	if (bRes) {
 

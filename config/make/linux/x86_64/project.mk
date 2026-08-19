@@ -5,12 +5,14 @@
 ### Lizenz: MIT             ###
 ###############################
 
-#######################
-### Project Version ###
-#######################
+########################
+### Library Versions ###
+########################
 
-TWSORDER_VERSION   := 0.1.0
-TWSORDER_SOVERSION := 0.1
+VERSION_TWSORDER    := 0.1.0
+VERSION_TWSCLIENT   := 1.1.0
+VERSION_TWSCONTRACT := 0.1.0
 
-TWSCLIENT_VERSION   := 1.1.0
-TWSCLIENT_SOVERSION := 1.1
+SOVERSION_TWSORDER    := 0.1
+SOVERSION_TWSCLIENT   := 1.1
+SOVERSION_TWSCONTRACT := 0.1

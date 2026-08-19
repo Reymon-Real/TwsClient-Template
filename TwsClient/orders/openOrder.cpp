@@ -15,6 +15,6 @@
 // *** Function ***
 // ****************
 
-void TwsClient::openOrder(OrderId orderId, const Contract& contract, const Order& order, const OrderState& orderState) {
+void TwsClient::openOrder(int orderId, const Contract& contract, const Order& order, const OrderState& orderState) {
 
 }

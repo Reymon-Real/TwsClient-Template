@@ -11,8 +11,6 @@
 
 source_files_twsclient = []
 
-build_dir_twsclient = meson.current_build_dir()
-
 ######################
 ### Subdirectories ###
 ######################
@@ -68,7 +66,6 @@ libTwsClient_shared = shared_library(
 
 	source_files_twsclient,
 
-	link_with: [ libTwsOrder_static ],
 	dependencies: dependencies,
 	include_directories: inc,
 
@@ -87,44 +84,12 @@ libTwsClient_shared = shared_library(
 ### Export Static Dependencies ###
 ##################################
 
-if get_option('buildtype') == 'debug'
-
 libTwsClient_static_dep = declare_dependency(
-	link_args: [
-		'-L' + build_dir_twsclient + '/' + meson_output_lib,
-		'-l:libTwsClient.a'
-	]
+	version: twsclient_version,
+	link_with: libTwsClient_static
 )
-
-elif get_option('buildtype') == 'release'
-
-libTwsClient_static_dep = declare_dependency(
-	link_args: [
-		'-l:libTwsClient.a'
-	]
-)
-
-endif
-
-##################################
-### Export Shared Dependencies ###
-##################################
-
-if get_option('buildtype') == 'debug'
 
 libTwsClient_shared_dep = declare_dependency(
-	link_args: [
-		'-L' + build_dir_twsclient + '/' + meson_output_lib,
-		'-lTwsClient'
-	]
+	version: twsclient_version,
+	link_with: libTwsClient_shared
 )
-
-elif get_option('buildtype') == 'release'
-
-libTwsClient_shared_dep = declare_dependency(
-	link_args: [
-		'-lTwsClient'
-	]
-)
-
-endif

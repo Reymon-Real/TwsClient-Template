@@ -9,12 +9,15 @@
 // *** Libraries ***
 // *****************
 
+#include <cstdio>
 #include <TwsClient.hpp>
 
 // ****************
 // *** Function ***
 // ****************
 
-void TwsClient::hedgeSample() {
-
+void TwsClient::updateConfigResponseProtoBuf(const protobuf::UpdateConfigResponse& updateConfigResponseProto) {
+	printf("==== Update Config Response Begin ====\n");
+	printf("%s\n", updateConfigResponseProto.DebugString().c_str());
+	printf("==== Update Config Response End ====\n");
 }

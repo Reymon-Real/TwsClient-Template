@@ -9,30 +9,30 @@
 ### Variables ###
 #################
 
-source_files_twsorder = []
+source_files_twscontract = []
 
 ####################
 ### Source Files ###
 ####################
 
-source_files_twsorder_root = files(
-	'Limit.cpp'
+source_files_twscontract_root = files(
+	'Create.cpp'
 )
 
 #####################################
 ### Control Source Files Addition ###
 #####################################
 
-source_files_twsorder += source_files_twsorder_root
+source_files_twscontract += source_files_twscontract_root
 
 #################
 ### Libraries ###
 #################
 
-libTwsOrder_static = static_library(
-	'TwsOrder',
+libTwsContract_static = static_library(
+	'TwsContract',
 
-	source_files_twsorder,
+	source_files_twscontract,
 
 	dependencies: dependencies,
 	include_directories: inc,
@@ -44,19 +44,19 @@ libTwsOrder_static = static_library(
 	install_dir: meson_install_libdir
 )
 
-libTwsOrder_shared = shared_library(
-	'TwsOrder',
+libTwsContract_shared = shared_library(
+	'TwsContract',
 
-	source_files_twsorder,
+	source_files_twscontract,
 
 	dependencies: dependencies,
 	include_directories: inc,
 
-	version:   twsorder_version,
-	soversion: twsorder_soversion,
+	version:   twscontract_version,
+	soversion: twscontract_soversion,
 	
-	build_rpath:   twsorder_build_rpath,
-	install_rpath: twsorder_install_rpath,
+	build_rpath:   twscontract_build_rpath,
+	install_rpath: twscontract_install_rpath,
 
 	build_subdir: meson_output_lib,
 
@@ -68,14 +68,14 @@ libTwsOrder_shared = shared_library(
 ### Dependencies ###
 ####################
 
-libTwsOrder_static_dep = declare_dependency(
-	version: twsorder_version,
-	link_with: libTwsOrder_static
+libTwsContract_static_dep = declare_dependency(
+	version: twscontract_version,
+	link_with: libTwsContract_static
 )
 
-libTwsOrder_shared_dep = declare_dependency(
-	version: twsorder_version,
-	link_with: libTwsOrder_shared
+libTwsContract_shared_dep = declare_dependency(
+	version: twscontract_version,
+	link_with: libTwsContract_shared
 )
 
-dependencies += libTwsOrder_static_dep
+dependencies += libTwsContract_static_dep

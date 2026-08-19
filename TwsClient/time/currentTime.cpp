@@ -15,6 +15,6 @@
 // *** Function ***
 // ****************
 
-void TwsClient::currentTime(long time) {
+void TwsClient::currentTime(long long time) {
 
 }

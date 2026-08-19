@@ -15,6 +15,6 @@
 // *** Function ***
 // ****************
 
-void TwsClient::tickString(TickerId tickerId, TickType tickType, const std::string& value) {
+void TwsClient::tickString(int tickerId, TickType tickType, const std::string& value) {
 
 }

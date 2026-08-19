@@ -5,8 +5,8 @@
 // *** Lizenz: AGPL-3-or-later ***
 // *******************************
 
-#ifndef TWSCLIENT_TEMPLATE_UTILS_H
-#define TWSCLIENT_TEMPLATE_UTILS_H
+#ifndef TWSCLIENT_UTILS_H
+#define TWSCLIENT_UTILS_H
 
 // ***************
 // *** Aliases ***
@@ -15,10 +15,6 @@
 // ******************
 // *** Enumerates ***
 // ******************
-
-// **************
-// *** Unions ***
-// **************
 
 // ******************
 // *** Structures ***

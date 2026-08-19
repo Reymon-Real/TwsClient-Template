@@ -21,8 +21,20 @@ $(OBJECT_FOLDER_TWSCLIENT)/%.cpp.o: $(SOURCE_FOLDER_TWSCLIENT)/%.cpp
 	@mkdir -p $(dir $@)
 	$(CXX) $(CXXFLAGS) -fPIC -c $< -o $@
 
+############################
+### TwsContract Patterns ###
+############################
+
+$(OBJECT_FOLDER_TWSCONTRACT)/%.cpp.o: $(SOURCE_FOLDER_TWSCONTRACT)/%.cpp
+	@mkdir -p $(dir $@)
+	$(CXX) $(CXXFLAGS) -fPIC -c $< -o $@
+
 ###########################
 ### Include Directories ###
 ###########################
 
--include $(call find,$(BUILDDIR),d)
+-include $(wildcard $(BUILDDIR)/*.d)
+-include $(wildcard $(BUILDDIR)/**/*.d)
+-include $(wildcard $(BUILDDIR)/**/**/*.d)
+-include $(wildcard $(BUILDDIR)/**/**/**/*.d)
+-include $(wildcard $(BUILDDIR)/**/**/**/**/*.d)

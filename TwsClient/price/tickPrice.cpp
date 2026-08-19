@@ -15,6 +15,6 @@
 // *** Functions ***
 // *****************
 
-void TwsClient::tickPrice( TickerId tickerId, TickType field, double price, const TickAttrib& attribs) {
+void TwsClient::tickPrice(int tickerId, TickType field, double price, const TickAttrib& attribs) {
 
 }

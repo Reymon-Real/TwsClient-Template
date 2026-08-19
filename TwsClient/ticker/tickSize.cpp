@@ -15,6 +15,6 @@
 // *** Function ***
 // ****************
 
-void TwsClient::tickSize(TickerId tickerId, TickType field, Decimal size) {
+void TwsClient::tickSize(int tickerId, TickType field, Decimal size) {
 
 }

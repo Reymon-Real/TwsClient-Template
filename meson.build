@@ -9,7 +9,7 @@ project(
 	'TwsClient',
 	[ 'c', 'cpp' ],
 
-	version: '1.1.2',
+	version: '1.1.5',
 	meson_version: '>=1.11.0',
 
 	default_options: [
@@ -29,6 +29,9 @@ twsclient_soversion = '1.1'
 
 twsorder_version   = '0.1.0'
 twsorder_soversion = '0.1'
+
+twscontract_version   = '0.1.0'
+twscontract_soversion = '0.1.0'
 
 meson_source_root_dir = meson.current_source_dir()
 
@@ -60,6 +63,9 @@ twsclient_install_rpath = get_option('twsclient_install_rpath')
 
 twsorder_build_rpath   = get_option('twsorder_build_rpath')
 twsorder_install_rpath = get_option('twsorder_install_rpath')
+
+twscontract_build_rpath   = get_option('twscontract_build_rpath')
+twscontract_install_rpath = get_option('twscontract_install_rpath')
 
 ############################
 ### Dependencies Options ###
@@ -121,7 +127,9 @@ libTwsSocketClient_static = declare_dependency(
 
 	link_args: [
 		'-L' + meson_source_root_dir + '/' + ibkr_dir_linkage_root,
-		'-l:libTwsSocketClient.a'
+		'-l:libTwsSocketClient.a',
+		'-l:libbid.a',
+		'-l:libprotobuf.so.23'
 	],
 
 	include_directories: include_directories(
@@ -135,7 +143,9 @@ libTwsSocketClient_shared = declare_dependency(
 
 	link_args: [
 		'-L' + meson_source_root_dir + '/' + ibkr_dir_linkage_root,
-		'-lTwsSocketClient'
+		'-lTwsSocketClient',
+		'-l:libbid.a',
+		'-l:libprotobuf.so.23'
 	],
 
 	include_directories: include_directories(
@@ -145,7 +155,7 @@ libTwsSocketClient_shared = declare_dependency(
 
 )
 
-dependencies += [ libTwsSocketClient_shared ]
+dependencies += [ libTwsSocketClient_static ]
 
 ###################
 ### Directories ###
@@ -168,13 +178,14 @@ source_files_root = files(
 ######################
 
 subdir('TwsOrder')
+subdir('TwsContract')
 subdir('TwsClient')
 
 ####################
 ### Dependencies ###
 ####################
 
-dependencies += [ libTwsClient_static_dep, libTwsOrder_static_dep ]
+dependencies += [ libTwsClient_static_dep, libTwsOrder_static_dep, libTwsContract_static_dep ]
 
 ###################
 ### Executables ###
