@@ -155,6 +155,8 @@ libTwsSocketClient_shared = declare_dependency(
 
 )
 
+# TODO: implement dynamic selection for linkage
+
 dependencies += [ libTwsSocketClient_static ]
 
 ###################
@@ -177,6 +179,8 @@ source_files_root = files(
 ### Subdirectories ###
 ######################
 
+# TODO: View and implement dynamic selection if necessary
+
 subdir('TwsOrder')
 subdir('TwsContract')
 subdir('TwsClient')
@@ -184,6 +188,8 @@ subdir('TwsClient')
 ####################
 ### Dependencies ###
 ####################
+
+# TODO: Dynamic selection
 
 dependencies += [ libTwsClient_static_dep, libTwsOrder_static_dep, libTwsContract_static_dep ]
 

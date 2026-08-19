@@ -8,8 +8,8 @@
 cmake_minimum_required(VERSION 4.0.0 FATAL_ERROR)
 project(
 	TwsClient
-	VERSION 1.1.2
-	LANGUAGES CXX C
+	VERSION 1.1.5
+	LANGUAGES C CXX
 )
 
 #############################
@@ -17,6 +17,16 @@ project(
 #############################
 
 string(TOLOWER "${CMAKE_SYSTEM_NAME}" PROJECT_SYSTEM)
+
+#########################
+### Project Variables ###
+#########################
+
+set(TWSORDER_VERSION    0.1.0)
+set(TWSCONTRACT_VERSION 0.1.0)
+
+set(TWSORDER_SOVERSION    0.1)
+set(TWSCONTRACT_SOVERSION 0.1)
 
 ###############
 ### Options ###
@@ -28,6 +38,8 @@ include(Options.cmake)
 ### Local Dependencies ###
 ##########################
 
+add_library(libprotobuf SHARED IMPORTED)
+
 add_library(libbid_static STATIC IMPORTED)
 add_library(libbid_shared STATIC IMPORTED)
 add_library(TwsSocketClient_static STATIC IMPORTED)
@@ -37,8 +49,9 @@ add_library(TwsSocketClient_shared SHARED IMPORTED)
 ### Directories ###
 ###################
 
-set(TWSORDER_DIR  "${CMAKE_SOURCE_DIR}/TwsOrder")
-set(TWSCLIENT_DIR "${CMAKE_SOURCE_DIR}/TwsClient")
+set(TWSORDER_DIR    "${CMAKE_SOURCE_DIR}/TwsOrder")
+set(TWSCLIENT_DIR   "${CMAKE_SOURCE_DIR}/TwsClient")
+set(TWSCONTRACT_DIR "${CMAKE_SOURCE_DIR}/TwsContract")
 
 #############
 ### Files ###
@@ -81,20 +94,53 @@ file(
 	"${TWSCLIENT_DIR}/time/*.cpp"
 )
 
-#################
-### Libraries ###
-#################
+file(
+	GLOB SOURCE_FILES_TWSCONTRACT
+	"${TWSCONTRACT_DIR}/*.cpp"
+)
+
+########################
+### Static Libraries ###
+########################
+
+add_library(
+	TwsOrder_static
+	STATIC
+	"${SOURCE_FILES_TWSORDER}"
+)
 
 add_library(
 	TwsClient_static
 	STATIC
-	${SOURCE_FILES_TWSCLIENT}
+	"${SOURCE_FILES_TWSCLIENT}"
+)
+
+add_library(
+	TwsContract_static
+	STATIC
+	"${SOURCE_FILES_TWSCONTRACT}"
+)
+
+########################
+### Shared Libraries ###
+########################
+
+add_library(
+	TwsOrder_shared
+	SHARED
+	"${SOURCE_FILES_TWSORDER}"
 )
 
 add_library(
 	TwsClient_shared
 	SHARED
-	${SOURCE_FILES_TWSCLIENT}
+	"${SOURCE_FILES_TWSCLIENT}"
+)
+
+add_library(
+	TwsContract_shared
+	SHARED
+	"${SOURCE_FILES_TWSCONTRACT}"
 )
 
 ###################
@@ -103,7 +149,7 @@ add_library(
 
 add_executable(
 	MyProgram
-	${SOURCE_FILE_MAIN}
+	"${SOURCE_FILE_MAIN}"
 )
 
 #######################
@@ -111,50 +157,103 @@ add_executable(
 #######################
 
 target_include_directories(
+	TwsOrder_static
+	PRIVATE
+	"${PROJECT_GLOBAL_INCLUDE_DIR}"
+	"${IBKR_DIR_INCLUDE_TWSSOCKETCLIENT}"
+	"${IBKR_DIR_INCLUDE_TWSSOCKETCLIENT_PROTOBUF}"
+)
+
+target_include_directories(
+	TwsOrder_shared
+	PRIVATE
+	"${PROJECT_GLOBAL_INCLUDE_DIR}"
+	"${IBKR_DIR_INCLUDE_TWSSOCKETCLIENT}"
+	"${IBKR_DIR_INCLUDE_TWSSOCKETCLIENT_PROTOBUF}"
+)
+
+
+target_include_directories(
 	TwsClient_static
 	PRIVATE
-	${PROJECT_GLOBAL_INCLUDE_DIR}
-	${IBKR_DIR_INCLUDE_TWSSOCKETCLIENT}
-	${IBKR_DIR_INCLUDE_TWSSOCKETCLIENT_PROTOBUF}
+	"${PROJECT_GLOBAL_INCLUDE_DIR}"
+	"${IBKR_DIR_INCLUDE_TWSSOCKETCLIENT}"
+	"${IBKR_DIR_INCLUDE_TWSSOCKETCLIENT_PROTOBUF}"
 )
 
 target_include_directories(
 	TwsClient_shared
 	PRIVATE
-	${PROJECT_GLOBAL_INCLUDE_DIR}
-	${IBKR_DIR_INCLUDE_TWSSOCKETCLIENT}
-	${IBKR_DIR_INCLUDE_TWSSOCKETCLIENT_PROTOBUF}
+	"${PROJECT_GLOBAL_INCLUDE_DIR}"
+	"${IBKR_DIR_INCLUDE_TWSSOCKETCLIENT}"
+	"${IBKR_DIR_INCLUDE_TWSSOCKETCLIENT_PROTOBUF}"
 )
+
+
+target_include_directories(
+	TwsContract_static
+	PRIVATE
+	"${PROJECT_GLOBAL_INCLUDE_DIR}"
+	"${IBKR_DIR_INCLUDE_TWSSOCKETCLIENT}"
+	"${IBKR_DIR_INCLUDE_TWSSOCKETCLIENT_PROTOBUF}"
+)
+
+target_include_directories(
+	TwsContract_shared
+	PRIVATE
+	"${PROJECT_GLOBAL_INCLUDE_DIR}"
+	"${IBKR_DIR_INCLUDE_TWSSOCKETCLIENT}"
+	"${IBKR_DIR_INCLUDE_TWSSOCKETCLIENT_PROTOBUF}"
+)
+
 
 target_include_directories(
 	MyProgram
 	PRIVATE
-	${IBKR_DIR_INCLUDE_TWSSOCKETCLIENT}
-	${IBKR_DIR_INCLUDE_TWSSOCKETCLIENT_PROTOBUF}
+	"${IBKR_DIR_INCLUDE_TWSSOCKETCLIENT}"
+	"${IBKR_DIR_INCLUDE_TWSSOCKETCLIENT_PROTOBUF}"
 )
 
 ####################
 ### Targets Link ###
 ####################
 
+# TODO: implement dynamic selection for linkage
+
+target_link_libraries(
+	TwsOrder_shared
+	TwsSocketClient_static
+	libbid_static
+	libprotobuf
+)
+
 target_link_libraries(
 	TwsClient_shared
-	libbid
-	TwsSocketClient_shared
+	TwsSocketClient_static
+	libbid_static
+	libprotobuf
+)
+
+target_link_libraries(
+	TwsContract_shared
+	TwsSocketClient_static
+	libbid_static
+	libprotobuf
 )
 
 target_link_libraries(
 	MyProgram
+	TwsOrder_static
 	TwsClient_static
-	libbid
-	TwsSocketClient_shared
+	TwsContract_static
+	TwsSocketClient_static
+	libbid_static
+	libprotobuf
 )
 
 ##############################################
 ### Set Propoerties for Local Dependencies ###
 ##############################################
-
-if (PROJECT_SYSTEM STREQUAL "windows")
 
 set_target_properties(
 	libbid_static
@@ -163,15 +262,23 @@ set_target_properties(
 )
 
 set_target_properties(
-	libbid_shared
-	PROPERTIES
-	IMPORTED_LOCATION "${IBKR_DIR_LINKAGE_ROOT}/libbid.dll"
-)
-
-set_target_properties(
 	TwsSocketClient_static
 	PROPERTIES
 	IMPORTED_LOCATION "${IBKR_DIR_LINKAGE_ROOT}/libTwsSocketClient.a"
+)
+
+if (PROJECT_SYSTEM STREQUAL "windows")
+
+set_target_properties(
+	libprotobuf
+	PROPERTIES
+	IMPORTED_LOCATION "${IBKR_DIR_LINKAGE_ROOT}/libprotobuf.dll"
+)
+
+set_target_properties(
+	libbid_shared
+	PROPERTIES
+	IMPORTED_LOCATION "${IBKR_DIR_LINKAGE_ROOT}/libbid.dll"
 )
 
 set_target_properties(
@@ -183,15 +290,15 @@ set_target_properties(
 elseif (PROJECT_SYSTEM STREQUAL "linux")
 
 set_target_properties(
-	libbid
+	libprotobuf
 	PROPERTIES
-	IMPORTED_LOCATION "${IBKR_DIR_LINKAGE_ROOT}/tws/libbid.so"
+	IMPORTED_LOCATION "${IBKR_DIR_LINKAGE_ROOT}/libprotobuf.so"
 )
 
 set_target_properties(
-	TwsSocketClient_static
+	libbid_shared
 	PROPERTIES
-	IMPORTED_LOCATION "${IBKR_DIR_LINKAGE_ROOT}/libTwsSocketClient.a"
+	IMPORTED_LOCATION "${IBKR_DIR_LINKAGE_ROOT}/libbid.so"
 )
 
 set_target_properties(
@@ -203,15 +310,15 @@ set_target_properties(
 elseif (PROJECT_SYSTEM STREQUAL "darwin")
 
 set_target_properties(
-	libbid
+	libprotobuf
 	PROPERTIES
-	IMPORTED_LOCATION "${IBKR_DIR_LINKAGE_ROOT}/tws/libbid.dylib"
+	IMPORTED_LOCATION "${IBKR_DIR_LINKAGE_ROOT}/libprotobuf.dylib"
 )
 
 set_target_properties(
-	TwsSocketClient_static
+	libbid_shared
 	PROPERTIES
-	IMPORTED_LOCATION "${IBKR_DIR_LINKAGE_ROOT}/libTwsSocketClient.a"
+	IMPORTED_LOCATION "${IBKR_DIR_LINKAGE_ROOT}/libbid.dylib"
 )
 
 set_target_properties(
@@ -234,40 +341,108 @@ set_target_properties(
 )
 
 set_target_properties(
+	TwsOrder_static
+	PROPERTIES
+	OUTPUT_NAME "TwsOrder"
+	ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_OUTPUT_LIB}"
+)
+
+set_target_properties(
 	TwsClient_static
 	PROPERTIES
 	OUTPUT_NAME "TwsClient"
 	ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_OUTPUT_LIB}"
 )
 
+set_target_properties(
+	TwsContract_static
+	PROPERTIES
+	OUTPUT_NAME "TwsContract"
+	ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_OUTPUT_LIB}"
+)
+
 if (PROJECT_SYSTEM STREQUAL "windows")
+
+set_target_properties(
+	TwsOrder_shared
+	PROPERTIES
+	OUTPUT_NAME "TwsOrder"
+	LIBRARY_OUTPUT_DIRECTORY "${CMAKE_OUTPUT_LIB}"
+)
 
 set_target_properties(
 	TwsClient_shared
 	PROPERTIES
 	OUTPUT_NAME "TwsClient"
+	LIBRARY_OUTPUT_DIRECTORY "${CMAKE_OUTPUT_LIB}"
+)
+
+set_target_properties(
+	TwsContract_shared
+	PROPERTIES
+	OUTPUT_NAME "TwsContract"
 	LIBRARY_OUTPUT_DIRECTORY "${CMAKE_OUTPUT_LIB}"
 )
 
 elseif (PROJECT_SYSTEM STREQUAL "linux")
 
 set_target_properties(
+	TwsOrder_shared
+	PROPERTIES
+	OUTPUT_NAME "TwsOrder"
+	VERSION   "${TWSORDER_VERSION}"
+	SOVERSION "${TWSORDER_SOVERSION}"
+	LIBRARY_OUTPUT_DIRECTORY "${CMAKE_OUTPUT_LIB}"
+)
+
+set_target_properties(
 	TwsClient_shared
 	PROPERTIES
 	OUTPUT_NAME "TwsClient"
-	VERSION 1.0.0
-	SOVERSION 1.0
+	VERSION   "${CMAKE_PROJECT_VERSION}"
+	SOVERSION "${CMAKE_PROJECT_VERSION_MAJOR}.${CMAKE_PROJECT_VERSION_MINOR}"
+	LIBRARY_OUTPUT_DIRECTORY "${CMAKE_OUTPUT_LIB}"
+)
+
+set_target_properties(
+	TwsClient_shared
+	PROPERTIES
+	OUTPUT_NAME "TwsContract"
+	VERSION   "${TWSCONTRACT_VERSION}"
+	SOVERSION "${TWSCONTRACT_SOVERSION}"
 	LIBRARY_OUTPUT_DIRECTORY "${CMAKE_OUTPUT_LIB}"
 )
 
 elseif (PROJECT_SYSTEM STREQUAL "darwin")
 
 set_target_properties(
+	TwsOrder_shared
+	PROPERTIES
+	OUTPUT_NAME "TwsOrder"
+	VERSION   "${TWSORDER_VERSION}"
+	SOVERSION "${TWSORDER_SOVERSION}"
+	MACHO_COMPATIBILITY_VERSION 1.0.0
+    MACHO_CURRENT_VERSION 1.0
+	LIBRARY_OUTPUT_DIRECTORY "${CMAKE_OUTPUT_LIB}"
+)
+
+set_target_properties(
 	TwsClient_shared
 	PROPERTIES
 	OUTPUT_NAME "TwsClient"
-	VERSION 1.0.0
-	SOVERSION 1.0
+	VERSION   "${CMAKE_PROJECT_VERSION}"
+	SOVERSION "${CMAKE_PROJECT_VERSION_MAJOR}.${CMAKE_PROJECT_VERSION_MINOR}"
+	MACHO_COMPATIBILITY_VERSION 1.0.0
+    MACHO_CURRENT_VERSION 1.0
+	LIBRARY_OUTPUT_DIRECTORY "${CMAKE_OUTPUT_LIB}"
+)
+
+set_target_properties(
+	TwsContract_shared
+	PROPERTIES
+	OUTPUT_NAME "TwsContract"
+	VERSION   "${TWSCONTRACT_VERSION}"
+	SOVERSION "${TWSCONTRACT_SOVERSION}"
 	MACHO_COMPATIBILITY_VERSION 1.0.0
     MACHO_CURRENT_VERSION 1.0
 	LIBRARY_OUTPUT_DIRECTORY "${CMAKE_OUTPUT_LIB}"
