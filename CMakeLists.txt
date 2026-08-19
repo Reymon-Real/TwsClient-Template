@@ -405,7 +405,7 @@ set_target_properties(
 )
 
 set_target_properties(
-	TwsClient_shared
+	TwsContract_shared
 	PROPERTIES
 	OUTPUT_NAME "TwsContract"
 	VERSION   "${TWSCONTRACT_VERSION}"
