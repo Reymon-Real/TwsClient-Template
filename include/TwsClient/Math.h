@@ -2,7 +2,7 @@
 // *** Autor: Reymon Dev       ***
 // *** Datum: 20. April. 2026  ***
 // *** Aktua: 28. Mai. 2026    ***
-// *** License: AGPL-3-or-later***
+// *** License: MIT            ***
 // *******************************
 
 #ifndef TWSCLIENT_MATH_H

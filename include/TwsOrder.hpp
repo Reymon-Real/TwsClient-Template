@@ -2,7 +2,7 @@
 // *** Autor: Reymon Dev       ***
 // *** Datum: 08. August. 2026 ***
 // *** Aktua: 08. August. 2026 ***
-// *** Lizenz: AGPL-3-or-later ***
+// *** Lizenz: MIT             ***
 // *******************************
 
 #ifndef TWSORDER_HPP

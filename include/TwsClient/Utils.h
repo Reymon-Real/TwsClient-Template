@@ -2,7 +2,7 @@
 // *** Autor: Reymon Dev       ***
 // *** Datum: 25. Mai. 2026    ***
 // *** Aktua: 25. Mai. 2026    ***
-// *** Lizenz: AGPL-3-or-later ***
+// *** Lizenz: MIT             ***
 // *******************************
 
 #ifndef TWSCLIENT_UTILS_H

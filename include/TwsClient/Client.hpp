@@ -1,8 +1,8 @@
 // **********************************
-// *** Author: Enosis Technology  ***
+// *** Author: Reymon Dev         ***
 // *** Date:   April 15 from 2026 ***
 // *** Update: April 15 from 2026 ***
-// *** License: AGPL-3-or-later   ***
+// *** License: MIT               ***
 // **********************************
 
 #ifndef TWSCLIENT_TEMPLATE_CLIENT_HPP

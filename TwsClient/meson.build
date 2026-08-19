@@ -2,7 +2,7 @@
 ### Autor: Reymon Dev       ###
 ### Datum: 03/04/2026       ###
 ### Aktua: 14. August. 2026 ###
-### Lizenz: AGPL-3-or-later ###
+### Lizenz: MIT             ###
 ###############################
 
 #################
